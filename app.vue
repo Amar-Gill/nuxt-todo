@@ -30,7 +30,7 @@ const todos = ref<Todo[]>([
 async function submitCreateTodo(payload: FormPayload) {
   const data = new FormData(payload.currentTarget);
 
-  const todo: Todo = await $fetch("/api/todos/create", {
+  const todo: Todo = await $fetch("/api/todos", {
     method: "POST",
     body: { content: data.get("content") },
   });
