@@ -8,7 +8,7 @@
     <button>Create</button>
   </form>
   <ul>
-    <li v-for="todo in todos">{{ todo.content }} | {{ todo.done }}</li>
+    <li v-for="todo in data?.todos">{{ todo.content }} | {{ todo.done }}</li>
   </ul>
 </template>
 
@@ -19,16 +19,14 @@ type FormPayload = Event & {
 
 const { data } = await useFetch("/api/todos");
 
-const todos = ref(data.value?.todos);
-
 async function submitCreateTodo(payload: FormPayload) {
-  const data = new FormData(payload.currentTarget);
+  const formData = new FormData(payload.currentTarget);
 
   const todo = await $fetch("/api/todos", {
     method: "POST",
-    body: { content: data.get("content") },
+    body: { content: formData.get("content") },
   });
 
-  todos.value?.push(todo);
+  data.value?.todos.push(todo);
 }
 </script>
