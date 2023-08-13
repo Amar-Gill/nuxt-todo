@@ -7,9 +7,18 @@
     <input type="text" name="content" />
     <button>Create</button>
   </form>
-  <ul>
-    <li v-for="todo in data?.todos">{{ todo.content }} | {{ todo.done }}</li>
-  </ul>
+  <table>
+    <tr>
+      <th>Id</th>
+      <th>Content</th>
+      <th>Done</th>
+    </tr>
+    <tr v-for="todo in data?.todos">
+      <td>{{ todo.id }}</td>
+      <td>{{ todo.content }}</td>
+      <td>{{ todo.done }}</td>
+    </tr>
+  </table>
 </template>
 
 <script setup lang="ts">
@@ -30,3 +39,20 @@ async function submitCreateTodo(payload: FormPayload) {
   data.value?.todos.push(todo);
 }
 </script>
+
+<style>
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+table,
+th,
+td {
+  border: solid black 1px;
+}
+
+tr:nth-child(odd) {
+  background: lightgray;
+}
+</style>
