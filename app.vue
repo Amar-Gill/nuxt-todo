@@ -31,17 +31,18 @@ type FormPayload = Event & {
 await useFetch("/api/todos", { key: "todos" });
 
 const { data } = useNuxtData<{ todos: Todo[] }>("todos");
-const prevTodos = ref<{ todos: Todo[] } | null>({ todos: [] });
 
 async function submitCreateTodo(payload: FormPayload) {
   const formData = new FormData(payload.currentTarget);
 
-  const { data: response } = await useFetch("/api/todos", {
+  let prevData: { todos: Todo[] } | null;
+
+  await useFetch("/api/todos", {
     method: "post",
     body: { content: formData.get("content") },
     key: "addTodo",
     onRequest() {
-      prevTodos.value = data.value;
+      prevData = data.value;
 
       const newTodo: Omit<Todo, "id"> = {
         content: formData.get("content")?.toString() ?? null,
@@ -51,7 +52,7 @@ async function submitCreateTodo(payload: FormPayload) {
       data.value?.todos.push(newTodo as Todo);
     },
     onRequestError() {
-      data.value = prevTodos.value;
+      data.value = prevData;
     },
     async onResponse() {
       await refreshNuxtData("todos");
