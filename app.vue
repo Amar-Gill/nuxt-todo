@@ -22,21 +22,41 @@
 </template>
 
 <script setup lang="ts">
+import { Todo } from "server/utils/drizzle/schema";
+
 type FormPayload = Event & {
   currentTarget: EventTarget & HTMLFormElement;
 };
 
-const { data } = await useFetch("/api/todos");
+await useFetch("/api/todos", { key: "todos" });
+
+const { data } = useNuxtData<{ todos: Todo[] }>("todos");
+const prevTodos = ref<{ todos: Todo[] } | null>({ todos: [] });
 
 async function submitCreateTodo(payload: FormPayload) {
   const formData = new FormData(payload.currentTarget);
 
-  const todo = await $fetch("/api/todos", {
-    method: "POST",
+  const { data: response } = await useFetch("/api/todos", {
+    method: "post",
     body: { content: formData.get("content") },
-  });
+    key: "addTodo",
+    onRequest() {
+      prevTodos.value = data.value;
 
-  data.value?.todos.push(todo);
+      const newTodo: Omit<Todo, "id"> = {
+        content: formData.get("content")?.toString() ?? null,
+        done: false,
+      };
+
+      data.value?.todos.push(newTodo as Todo);
+    },
+    onRequestError() {
+      data.value = prevTodos.value;
+    },
+    async onResponse() {
+      await refreshNuxtData("todos");
+    },
+  });
 }
 </script>
 
