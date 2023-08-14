@@ -12,11 +12,15 @@
       <th>Id</th>
       <th>Content</th>
       <th>Done</th>
+      <th></th>
     </tr>
     <tr v-for="todo in data?.todos">
       <td>{{ todo.id }}</td>
       <td>{{ todo.content }}</td>
       <td>{{ todo.done }}</td>
+      <td>
+        <button @click.prevent="deleteTodo(todo)">Delete</button>
+      </td>
     </tr>
   </table>
 </template>
@@ -50,6 +54,28 @@ async function submitCreateTodo(payload: FormPayload) {
       };
 
       data.value?.todos.push(newTodo as Todo);
+    },
+    onRequestError() {
+      data.value = prevData;
+    },
+    async onResponse() {
+      await refreshNuxtData("todos");
+    },
+  });
+}
+
+async function deleteTodo(todo: Todo) {
+  let prevData: { todos: Todo[] } | null;
+
+  await useFetch(`/api/todos/${todo.id}`, {
+    method: "delete",
+    key: "deleteTodo",
+    onRequest() {
+      prevData = data.value;
+
+      const newTodos = data.value?.todos.filter(({ id }) => id !== todo.id)!;
+
+      data.value = { todos: newTodos };
     },
     onRequestError() {
       data.value = prevData;
