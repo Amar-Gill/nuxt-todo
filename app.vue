@@ -17,7 +17,14 @@
     <tr v-for="todo in data?.todos">
       <td>{{ todo.id }}</td>
       <td>{{ todo.content }}</td>
-      <td>{{ todo.done }}</td>
+      <td>
+        <input
+          type="checkbox"
+          :checked="todo.done"
+          v-bind="todo.done"
+          @change="((e: InputPayload) => handleDoneCheckboxChanged(e, todo))"
+        />
+      </td>
       <td>
         <button @click.prevent="deleteTodo(todo)">Delete</button>
       </td>
@@ -31,6 +38,8 @@ import { Todo } from "server/utils/drizzle/schema";
 type FormPayload = Event & {
   currentTarget: EventTarget & HTMLFormElement;
 };
+
+type InputPayload = Event & { currentTarget: EventTarget & HTMLInputElement };
 
 await useFetch("/api/todos", { key: "todos" });
 
@@ -79,6 +88,27 @@ async function deleteTodo(todo: Todo) {
     },
     onRequestError() {
       data.value = prevData;
+    },
+    async onResponse() {
+      await refreshNuxtData("todos");
+    },
+  });
+}
+
+async function handleDoneCheckboxChanged(e: InputPayload, todo: Todo) {
+  const done = e.currentTarget.checked;
+
+  const updatedTodo = data.value?.todos.find(({ id }) => id === todo.id)!;
+
+  await useFetch(`/api/todos/${todo.id}`, {
+    method: "PATCH",
+    key: "patchTodo",
+    body: { done },
+    onRequest() {
+      updatedTodo.done = done;
+    },
+    onRequestError() {
+      updatedTodo.done = !done;
     },
     async onResponse() {
       await refreshNuxtData("todos");
