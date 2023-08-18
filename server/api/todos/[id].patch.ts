@@ -1,7 +1,7 @@
 import { eq } from "drizzle-orm";
 
 export default defineEventHandler(async (event) => {
-  const body = await readBody<{ done: boolean }>(event);
+  const body = await readBody<Todo>(event);
 
   const id = getRouterParam(event, "id");
 
