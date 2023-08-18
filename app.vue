@@ -33,7 +33,7 @@
 </template>
 
 <script setup lang="ts">
-import { Todo } from "server/utils/drizzle/schema";
+import { Todo } from "server/utils/drizzle";
 
 type FormPayload = Event & {
   currentTarget: EventTarget & HTMLFormElement;
