@@ -4,6 +4,7 @@ export default {
   schema: "./server/utils/drizzle/schema.ts",
   out: "./drizzle",
   driver: "libsql",
+  verbose: true,
   dbCredentials: {
     url: process.env.NUXT_TURSO_DB_URL ?? "file:./server/sqlite.db",
   },
