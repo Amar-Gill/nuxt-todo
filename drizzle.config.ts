@@ -5,6 +5,6 @@ export default {
   out: "./drizzle",
   driver: "libsql",
   dbCredentials: {
-    url: "file:./server/sqlite.db",
+    url: process.env.TURSO_DB_URL ?? "file:./server/sqlite.db",
   },
 } satisfies Config;
