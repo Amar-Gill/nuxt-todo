@@ -1,9 +1,11 @@
 import { drizzle } from "drizzle-orm/libsql";
 import { createClient } from "@libsql/client";
 
+const runtimeConfig = useRuntimeConfig();
+
 const client = createClient({
-  url: process.env.TURSO_DB_URL ?? "file:./server/sqlite.db",
-  authToken: process.env.TURSO_DB_TOKEN,
+  url: runtimeConfig.tursoDbUrl,
+  authToken: runtimeConfig.tursoDbToken,
 });
 
 export const db = drizzle(client);
