@@ -7,9 +7,9 @@
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
-    "push": "drizzle-kit push:sqlite",
-    "studio": "drizzle-kit studio",
-    "generate": "drizzle-kit generate:sqlite"
+    "db:push": "drizzle-kit push:sqlite",
+    "db:studio": "drizzle-kit studio",
+    "db:generate": "drizzle-kit generate:sqlite"
   },
   "devDependencies": {
     "@nuxt/devtools": "latest",
