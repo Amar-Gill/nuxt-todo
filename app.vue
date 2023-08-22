@@ -33,7 +33,7 @@
 </template>
 
 <script setup lang="ts">
-import type { Todo } from "server/utils/drizzle";
+import type { InsertTodo, Todo } from "server/utils/drizzle";
 
 type FormPayload = Event & {
   currentTarget: EventTarget & HTMLFormElement;
@@ -57,9 +57,8 @@ async function submitCreateTodo(payload: FormPayload) {
     onRequest() {
       prevData = data.value;
 
-      const newTodo: Omit<Todo, "id"> = {
-        content: formData.get("content")?.toString() ?? null,
-        done: false,
+      const newTodo: InsertTodo = {
+        content: formData.get("content")?.toString(),
       };
 
       data.value?.todos.push(newTodo as Todo);

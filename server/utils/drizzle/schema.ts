@@ -8,3 +8,4 @@ export const todos = sqliteTable("todos", {
 });
 
 export type Todo = InferModel<typeof todos>;
+export type InsertTodo = InferModel<typeof todos, "insert">;
