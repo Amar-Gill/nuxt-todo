@@ -2,7 +2,7 @@ import { sqliteTable, integer, text } from "drizzle-orm/sqlite-core";
 
 export const todos = sqliteTable("todos", {
   id: integer("id").primaryKey(),
-  content: text("content"),
+  content: text("content").notNull(),
   done: integer("done", { mode: "boolean" }).default(false),
 });
 

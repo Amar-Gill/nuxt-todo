@@ -58,7 +58,7 @@ async function submitCreateTodo(payload: FormPayload) {
       prevData = data.value;
 
       const newTodo: InsertTodo = {
-        content: formData.get("content")?.toString(),
+        content: formData.get("content")?.toString() ?? "",
       };
 
       data.value?.todos.push(newTodo as Todo);
