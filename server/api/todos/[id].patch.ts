@@ -11,7 +11,7 @@ export default defineEventHandler(async (event) => {
 
   return db
     .update(todos)
-    .set({ done: body.done })
+    .set({ done: body.done, updatedAt: new Date() })
     .where(eq(todos.id, parseInt(id)))
     .returning()
     .get();
