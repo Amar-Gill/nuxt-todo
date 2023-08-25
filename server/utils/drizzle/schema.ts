@@ -7,10 +7,10 @@ export const todos = sqliteTable("todos", {
   done: integer("done", { mode: "boolean" }).notNull().default(false),
   createdAt: integer("created_at", { mode: "timestamp" })
     .notNull()
-    .$default(() => sql`strftime('%s','now')`),
+    .default(sql`(strftime('%s','now'))`),
   updatedAt: integer("updated_at", { mode: "timestamp" })
     .notNull()
-    .$default(() => sql`strftime('%s','now')`),
+    .default(sql`(strftime('%s','now'))`),
 });
 
 export type Todo = typeof todos.$inferSelect;
