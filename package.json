@@ -15,7 +15,7 @@
     "@nuxt/devtools": "latest",
     "@types/node": "^18.17.1",
     "drizzle-kit": "^0.19.13",
-    "nuxt": "^3.6.5"
+    "nuxt": "^3.7.0"
   },
   "dependencies": {
     "@libsql/client": "^0.3.1",
