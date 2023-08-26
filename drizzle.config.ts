@@ -7,5 +7,6 @@ export default {
   verbose: true,
   dbCredentials: {
     url: process.env.NUXT_TURSO_DB_URL ?? "file:./server/sqlite.db",
+    authToken: process.env.NUXT_TURSO_DB_TOKEN,
   },
 } satisfies Config;
