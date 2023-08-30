@@ -2,7 +2,7 @@ import type { Config } from "drizzle-kit";
 
 export default {
   schema: "./server/utils/drizzle/schema.ts",
-  out: "./drizzle",
+  out: "./server/migrations/",
   driver: "libsql",
   verbose: true,
   dbCredentials: {
