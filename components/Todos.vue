@@ -1,0 +1,134 @@
+<template>
+  <form
+    method="post"
+    @submit.prevent="((e:FormPayload) => submitCreateTodo(e))"
+  >
+    <label for="content">Content</label>
+    <input type="text" name="content" />
+    <button>Create</button>
+  </form>
+  <table>
+    <tr>
+      <th>Id</th>
+      <th>Content</th>
+      <th>Done</th>
+      <th></th>
+    </tr>
+    <tr v-for="todo in data?.todos">
+      <td>{{ todo.id }}</td>
+      <td>{{ todo.content }}</td>
+      <td>
+        <input
+          type="checkbox"
+          :checked="todo.done"
+          v-bind="todo.done"
+          @change="((e: InputPayload) => handleDoneCheckboxChanged(e, todo))"
+        />
+      </td>
+      <td>
+        <button @click.prevent="deleteTodo(todo)">Delete</button>
+      </td>
+    </tr>
+  </table>
+</template>
+
+<script setup lang="ts">
+import type { InsertTodo, Todo } from "@/server/utils/drizzle/schema";
+
+type FormPayload = Event & {
+  currentTarget: EventTarget & HTMLFormElement;
+};
+
+type InputPayload = Event & { currentTarget: EventTarget & HTMLInputElement };
+
+await useFetch("/api/todos", { key: "todos" });
+
+const { data } = useNuxtData<{ todos: Todo[] }>("todos");
+
+async function submitCreateTodo(payload: FormPayload) {
+  const formData = new FormData(payload.currentTarget);
+
+  let prevData: { todos: Todo[] } | null;
+
+  await useFetch("/api/todos", {
+    method: "post",
+    body: { content: formData.get("content") },
+    key: "addTodo",
+    onRequest() {
+      prevData = data.value;
+
+      const newTodo: InsertTodo = {
+        content: formData.get("content")?.toString() ?? "",
+      };
+
+      data.value?.todos.push(newTodo as Todo);
+    },
+    onRequestError() {
+      data.value = prevData;
+    },
+    async onResponse() {
+      await refreshNuxtData("todos");
+    },
+  });
+}
+
+async function deleteTodo(todo: Todo) {
+  let prevData: { todos: Todo[] } | null;
+
+  await useFetch(`/api/todos/${todo.id}`, {
+    method: "delete",
+    key: "deleteTodo",
+    onRequest() {
+      prevData = data.value;
+
+      const newTodos = data.value?.todos.filter(({ id }) => id !== todo.id)!;
+
+      data.value = { todos: newTodos };
+    },
+    onRequestError() {
+      data.value = prevData;
+    },
+    async onResponse() {
+      await refreshNuxtData("todos");
+    },
+  });
+}
+
+async function handleDoneCheckboxChanged(e: InputPayload, todo: Todo) {
+  const done = e.currentTarget.checked;
+
+  const updatedTodo = data.value?.todos.find(({ id }) => id === todo.id)!;
+
+  await useFetch(`/api/todos/${todo.id}`, {
+    method: "PATCH",
+    key: "patchTodo",
+    body: { done },
+    onRequest() {
+      updatedTodo.done = done;
+    },
+    onRequestError() {
+      updatedTodo.done = !done;
+    },
+    async onResponse() {
+      await refreshNuxtData("todos");
+    },
+  });
+}
+</script>
+
+<style>
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+table,
+th,
+td {
+  border: solid black 1px;
+}
+
+tr:nth-child(odd) {
+  background: lightgray;
+}
+</style>
