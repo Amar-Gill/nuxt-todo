@@ -12,6 +12,9 @@ dependencies:
   '@libsql/client':
     specifier: ^0.3.1
     version: 0.3.1
+  '@propelauth/javascript':
+    specifier: ^2.0.6
+    version: 2.0.6
   drizzle-orm:
     specifier: ^0.28.5
     version: 0.28.5(@libsql/client@0.3.1)
@@ -322,7 +325,7 @@ packages:
     engines: {node: '>=6.9.0'}
     dependencies:
       '@babel/code-frame': 7.22.10
-      '@babel/parser': 7.22.11
+      '@babel/parser': 7.22.13
       '@babel/types': 7.22.11
     dev: true
 
@@ -336,7 +339,7 @@ packages:
       '@babel/helper-function-name': 7.22.5
       '@babel/helper-hoist-variables': 7.22.5
       '@babel/helper-split-export-declaration': 7.22.6
-      '@babel/parser': 7.22.11
+      '@babel/parser': 7.22.13
       '@babel/types': 7.22.11
       debug: 4.3.4
       globals: 11.12.0
@@ -1421,7 +1424,7 @@ packages:
       estree-walker: 3.0.3
       externality: 1.0.2
       fs-extra: 11.1.1
-      get-port-please: 3.0.1
+      get-port-please: 3.0.2
       h3: /h3-nightly@1.8.2-1693084616.4994334
       knitwork: 1.0.0
       magic-string: 0.30.3
@@ -1615,6 +1618,10 @@ packages:
     resolution: {integrity: sha512-a5Sab1C4/icpTZVzZc5Ghpz88yQtGOyNqYXcZgOssB2uuAr+wF/MvN6bgtW32q7HHrvBki+BsZ0OuNv6EV3K9g==}
     dev: true
 
+  /@propelauth/javascript@2.0.6:
+    resolution: {integrity: sha512-STz+44y+4A4leC9oRm2pg7QNp1XUZv62f2FR78WVikDphlAbAqOeEd+T284QKqaE/3V8/OnGms/CCKj7CpJN9Q==}
+    dev: false
+
   /@rollup/plugin-alias@5.0.0(rollup@3.28.1):
     resolution: {integrity: sha512-l9hY5chSCjuFRPsnRm16twWBiSApl2uYFLsepQYwtBuAxNMQ/1dJqADld40P0Jkqm65GRTLy/AC6hnpVebtLsA==}
     engines: {node: '>=14.0.0'}
@@ -1701,7 +1708,7 @@ packages:
       rollup:
         optional: true
     dependencies:
-      '@rollup/pluginutils': 5.0.3(rollup@3.28.1)
+      '@rollup/pluginutils': 5.0.4(rollup@3.28.1)
       magic-string: 0.27.0
       rollup: 3.28.1
     dev: true
@@ -1966,7 +1973,7 @@ packages:
         optional: true
     dependencies:
       '@babel/types': 7.22.11
-      '@rollup/pluginutils': 5.0.3(rollup@3.28.1)
+      '@rollup/pluginutils': 5.0.4(rollup@3.28.1)
       '@vue/compiler-sfc': 3.3.4
       ast-kit: 0.10.0
       local-pkg: 0.4.3
@@ -2270,8 +2277,8 @@ packages:
     resolution: {integrity: sha512-8y01XClpURgvxTJmM4AY2oHa1B/6iysALB9yJM1j4ak3Z2ZsnU0ewjDZzqOHdbNdit6hC0DGZNrBqNuCrv51fQ==}
     engines: {node: '>=16.14.0'}
     dependencies:
-      '@babel/parser': 7.22.11
-      '@rollup/pluginutils': 5.0.3(rollup@3.28.1)
+      '@babel/parser': 7.22.13
+      '@rollup/pluginutils': 5.0.4(rollup@3.28.1)
       pathe: 1.1.1
     transitivePeerDependencies:
       - rollup
@@ -2288,7 +2295,7 @@ packages:
     resolution: {integrity: sha512-vdCU9JvpsrxWxvJiRHAr8If8cu07LWJXDPhkqLiP4ErbN1fu/mK623QGmU4Qbn2Nq4Mx0vR/Q017B6+HcHg1aQ==}
     engines: {node: '>=16.14.0'}
     dependencies:
-      '@babel/parser': 7.22.11
+      '@babel/parser': 7.22.13
       '@babel/types': 7.22.11
     dev: true
 
@@ -3834,10 +3841,6 @@ packages:
       has-symbols: 1.0.3
     dev: true
 
-  /get-port-please@3.0.1:
-    resolution: {integrity: sha512-R5pcVO8Z1+pVDu8Ml3xaJCEkBiiy1VQN9za0YqH8GIi1nIqD4IzQhzY6dDzMRtdS1lyiGlucRzm8IN8wtLIXng==}
-    dev: true
-
   /get-port-please@3.0.2:
     resolution: {integrity: sha512-c14cAITf0E+uqdxGALvyYHwOL7UsnWcv3oDtgDAZksiVSGN87xlWVUWGZcmWQU3cICdaOxT+6LdQzUfK2ei1SA==}
     dev: true
@@ -4973,8 +4976,8 @@ packages:
     resolution: {integrity: sha512-CXdUiJembsNjuToQvxayPZF9Vqht7hewsvy2sOWafLvi2awflj9mOC6bHIg50orX8IJvWKY9wYQ/zB2kogPslQ==}
     dev: true
 
-  /nitropack-edge@2.6.3-28220517.4ac686a:
-    resolution: {integrity: sha512-ShkvdA2j/lq/B4Q4ELT5EVI6a696T4R+6oIG7xWGb3fFe8652dElgzML+FbUEWnSYfF1IlhZ1t5r3+CDlZBBOQ==}
+  /nitropack-edge@2.6.3-28223518.83e980b:
+    resolution: {integrity: sha512-nCNQ70q+IgXIzfzg6SZ095jR1/2sDAOFTD3/5gCHAk+9LX3B9x6fTWVtz/mlAmfpuQA+UzYwtAolsJc2QlyeHg==}
     engines: {node: ^16.11.0 || >=17.0.0}
     hasBin: true
     dependencies:
@@ -5316,7 +5319,7 @@ packages:
       knitwork: 1.0.0
       magic-string: 0.30.3
       mlly: 1.4.1
-      nitropack: /nitropack-edge@2.6.3-28220517.4ac686a
+      nitropack: /nitropack-edge@2.6.3-28223518.83e980b
       nuxi: 3.7.0
       nypm: 0.3.1
       ofetch: 1.3.3

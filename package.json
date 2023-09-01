@@ -19,6 +19,7 @@
   },
   "dependencies": {
     "@libsql/client": "^0.3.1",
+    "@propelauth/javascript": "^2.0.6",
     "drizzle-orm": "^0.28.5"
   },
   "resolutions": {
