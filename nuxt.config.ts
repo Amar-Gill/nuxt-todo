@@ -11,6 +11,9 @@ export default defineNuxtConfig({
   runtimeConfig: {
     tursoDbUrl,
     tursoDbToken,
+    public: {
+      authUrl: "",
+    },
   },
   hooks: {
     async "build:before"() {
