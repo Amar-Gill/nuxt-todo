@@ -1,12 +1,17 @@
-import { createClient } from "@propelauth/javascript";
+import { IAuthClient, createClient } from "@propelauth/javascript";
+
+let client: IAuthClient;
 
 export const useAuthClient = () => {
   const {
     public: { authUrl },
   } = useRuntimeConfig();
 
-  return createClient({
-    authUrl,
-    enableBackgroundTokenRefresh: true,
-  });
+  return (
+    client ??
+    (client = createClient({
+      authUrl,
+      enableBackgroundTokenRefresh: true,
+    }))
+  );
 };
