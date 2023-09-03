@@ -15,9 +15,10 @@ export const useAuth = () => {
     } finally {
       fetchingAuth.value = false;
     }
+    return !!auth.value;
   };
 
   if (!auth.value) fetchAuth();
 
-  return { auth, authClient, fetchingAuth };
+  return { auth, authClient, fetchAuth, fetchingAuth };
 };
