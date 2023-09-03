@@ -1,9 +1,12 @@
 import { AuthenticationInfo } from "@propelauth/javascript";
 
+export const useAuthState = () =>
+  useState<AuthenticationInfo | null>("auth", () => null);
+
 export const useAuth = () => {
   const authClient = useAuthClient();
 
-  const auth = ref<AuthenticationInfo | null>(null);
+  const auth = useAuthState();
   const fetchingAuth = ref(false);
 
   const fetchAuth = async () => {
