@@ -35,15 +35,26 @@
 <script setup lang="ts">
 import type { InsertTodo, Todo } from "@/server/utils/drizzle/schema";
 
+const { auth } = useAuth();
+
 type FormPayload = Event & {
   currentTarget: EventTarget & HTMLFormElement;
 };
 
 type InputPayload = Event & { currentTarget: EventTarget & HTMLInputElement };
 
-await useFetch("/api/todos", { key: "todos" });
+await useFetch("/api/todos", {
+  key: "todos",
+  headers: { Authorization: `Bearer ${auth.value?.accessToken}` },
+});
 
 const { data } = useNuxtData<{ todos: Todo[] }>("todos");
+
+onMounted(() => {
+  if (!data.value) {
+    refreshNuxtData("todos");
+  }
+});
 
 async function submitCreateTodo(payload: FormPayload) {
   const formData = new FormData(payload.currentTarget);
