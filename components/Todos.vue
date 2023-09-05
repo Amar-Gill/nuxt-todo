@@ -1,41 +1,44 @@
 <template>
-  <form
-    method="post"
-    @submit.prevent="((e:FormPayload) => submitCreateTodo(e))"
-  >
-    <label for="content">Content</label>
-    <input type="text" name="content" />
-    <button>Create</button>
-  </form>
-  <table>
-    <tr>
-      <th>Id</th>
-      <th>Content</th>
-      <th>Done</th>
-      <th></th>
-    </tr>
-    <tr v-for="todo in data?.todos">
-      <td>{{ todo.id }}</td>
-      <td>{{ todo.content }}</td>
-      <td>
-        <input
-          type="checkbox"
-          :checked="todo.done"
-          v-bind="todo.done"
-          @change="((e: InputPayload) => handleDoneCheckboxChanged(e, todo))"
-        />
-      </td>
-      <td>
-        <button @click.prevent="deleteTodo(todo)">Delete</button>
-      </td>
-    </tr>
-  </table>
+  <div v-if="fetchingAuth || pending">Loading...</div>
+  <div v-else>
+    <form
+      method="post"
+      @submit.prevent="((e:FormPayload) => submitCreateTodo(e))"
+    >
+      <label for="content">Content</label>
+      <input type="text" name="content" />
+      <button>Create</button>
+    </form>
+    <table>
+      <tr>
+        <th>Id</th>
+        <th>Content</th>
+        <th>Done</th>
+        <th></th>
+      </tr>
+      <tr v-for="todo in data?.todos">
+        <td>{{ todo.id }}</td>
+        <td>{{ todo.content }}</td>
+        <td>
+          <input
+            type="checkbox"
+            :checked="todo.done"
+            v-bind="todo.done"
+            @change="((e: InputPayload) => handleDoneCheckboxChanged(e, todo))"
+          />
+        </td>
+        <td>
+          <button @click.prevent="deleteTodo(todo)">Delete</button>
+        </td>
+      </tr>
+    </table>
+  </div>
 </template>
 
 <script setup lang="ts">
 import type { InsertTodo, Todo } from "@/server/utils/drizzle/schema";
 
-const { auth } = useAuth();
+const { auth, fetchingAuth } = useAuth();
 
 type FormPayload = Event & {
   currentTarget: EventTarget & HTMLFormElement;
@@ -43,7 +46,7 @@ type FormPayload = Event & {
 
 type InputPayload = Event & { currentTarget: EventTarget & HTMLInputElement };
 
-await useFetch("/api/todos", {
+const { pending } = await useFetch("/api/todos", {
   key: "todos",
   headers: { Authorization: `Bearer ${auth.value?.accessToken}` },
 });
