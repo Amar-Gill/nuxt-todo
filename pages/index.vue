@@ -1,7 +1,10 @@
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+const { fetchingAuth } = useAuth();
+</script>
 
 <template>
-  <div>Da home page!</div>
+  <div v-if="fetchingAuth">Loading...</div>
+  <div v-else>Da home page!</div>
 </template>
 
 <style scoped></style>

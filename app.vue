@@ -8,8 +8,7 @@
       <li><NuxtLink to="/login">Login</NuxtLink></li>
     </ul>
   </nav>
-  <div v-if="fetchingAuth">Loading...</div>
-  <NuxtPage v-else />
+  <NuxtPage />
 </template>
 
 <script setup lang="ts">
