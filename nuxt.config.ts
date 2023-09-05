@@ -17,7 +17,13 @@ export default defineNuxtConfig({
   },
   hooks: {
     async "build:before"() {
-      console.log("Migrating database...");
+      if (process.env.NODE_ENV === "development") {
+        console.info("Skipping database migrations in development mode");
+        console.info("Use db:push command to apply migrations");
+        return;
+      }
+
+      console.info("Migrating database...");
 
       const client = createClient({
         url: process.env.NUXT_TURSO_DB_URL ?? tursoDbUrl,
