@@ -13,15 +13,15 @@
   },
   "devDependencies": {
     "@nuxt/devtools": "latest",
-    "@types/node": "^18.17.1",
+    "@types/node": "^18.17.16",
     "drizzle-kit": "^0.19.13",
-    "nuxt": "^3.7.0"
+    "nuxt": "^3.7.3"
   },
   "dependencies": {
-    "@libsql/client": "^0.3.1",
+    "@libsql/client": "^0.3.4",
     "@propelauth/cloudflare-worker": "^2.1.2",
     "@propelauth/javascript": "^2.0.6",
-    "drizzle-orm": "^0.28.5"
+    "drizzle-orm": "^0.28.6"
   },
   "resolutions": {
     "nitropack": "npm:nitropack-edge@latest",
