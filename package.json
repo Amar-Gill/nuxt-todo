@@ -19,8 +19,8 @@
   },
   "dependencies": {
     "@libsql/client": "^0.3.1",
+    "@propelauth/cloudflare-worker": "^2.1.2",
     "@propelauth/javascript": "^2.0.6",
-    "@propelauth/node": "^2.1.3",
     "drizzle-orm": "^0.28.5"
   },
   "resolutions": {
