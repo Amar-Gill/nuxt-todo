@@ -10,6 +10,7 @@ export default defineNuxtConfig({
     tursoDbToken: "",
     authUrl: "",
     authApiKey: "",
+    authVerifierKey: "",
     public: {
       authUrl: "",
     },
