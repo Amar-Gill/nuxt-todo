@@ -6,7 +6,7 @@ export const defineProtectedEventHandler = <T extends EventHandlerRequest, D>(
 ): EventHandler<T, D> =>
   defineEventHandler<T>(async (event) => {
     try {
-      event.context.user = await propelAuth.validateAccessTokenAndGetUser(
+      event.context.user = await propelAuth.validateAuthHeaderAndGetUser(
         event.headers.get("Authorization")
       );
 
