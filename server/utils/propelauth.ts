@@ -1,8 +1,9 @@
-import { initBaseAuth } from "@propelauth/node";
+import { initAuth } from "@propelauth/cloudflare-worker";
 
-const { authUrl, authApiKey } = useRuntimeConfig();
+const { authUrl, authApiKey, authVerifierKey } = useRuntimeConfig();
 
-export default initBaseAuth({
+export default initAuth({
   authUrl,
   apiKey: authApiKey,
+  verifierKey: authVerifierKey,
 });
