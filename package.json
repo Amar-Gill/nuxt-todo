@@ -19,7 +19,7 @@
   },
   "dependencies": {
     "@libsql/client": "^0.3.4",
-    "@propelauth/cloudflare-worker": "^2.1.2",
+    "@propelauth/cloudflare-worker": "github:amar-gill/propelauth-cloudflare-worker#update-manifest",
     "@propelauth/javascript": "^2.0.6",
     "drizzle-orm": "^0.28.6"
   },

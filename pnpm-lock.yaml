@@ -13,8 +13,8 @@ dependencies:
     specifier: ^0.3.4
     version: 0.3.4
   '@propelauth/cloudflare-worker':
-    specifier: ^2.1.2
-    version: 2.1.2
+    specifier: github:amar-gill/propelauth-cloudflare-worker#update-manifest
+    version: github.com/amar-gill/propelauth-cloudflare-worker/e09162547957ecff070c1e55bbf827d52d8c9a38
   '@propelauth/javascript':
     specifier: ^2.0.6
     version: 2.0.6
@@ -1444,12 +1444,6 @@ packages:
   /@polka/url@1.0.0-next.23:
     resolution: {integrity: sha512-C16M+IYz0rgRhWZdCmK+h58JMv8vijAA61gmz2rspCSwKwzBebpdcsiUmwrtJRdphuY30i6BSLEOP8ppbNLyLg==}
     dev: true
-
-  /@propelauth/cloudflare-worker@2.1.2:
-    resolution: {integrity: sha512-wVAT+B2AgJNNpXQeSdtewPuf0yJAnaX/oewSfp/z28jIBowUjHc3zI3netA0SCGVyMwWrhGTVOE55l/ihaZGeA==}
-    dependencies:
-      jose: 4.14.6
-    dev: false
 
   /@propelauth/javascript@2.0.6:
     resolution: {integrity: sha512-STz+44y+4A4leC9oRm2pg7QNp1XUZv62f2FR78WVikDphlAbAqOeEd+T284QKqaE/3V8/OnGms/CCKj7CpJN9Q==}
@@ -3829,6 +3823,7 @@ packages:
   /iconv-lite@0.6.3:
     resolution: {integrity: sha512-4fCk79wshMdzMp2rH06qWrJE4iolqLhCUH+OiuIgU++RB0+94NlDL81atO7GX55uUKueo0txHNtvEyI6D7WdMw==}
     engines: {node: '>=0.10.0'}
+    requiresBuild: true
     dependencies:
       safer-buffer: 2.1.2
     dev: true
@@ -5890,6 +5885,7 @@ packages:
 
   /safer-buffer@2.1.2:
     resolution: {integrity: sha512-YZo3K82SD7Riyi0E1EQPojLz7kpepnSQI9IyPbHHg1XXXevb5dJI7tpyN2ADxGcQbHG7vcyRHk0cbwqcQriUtg==}
+    requiresBuild: true
     dev: true
     optional: true
 
@@ -7078,3 +7074,11 @@ packages:
   /zod@3.22.2:
     resolution: {integrity: sha512-wvWkphh5WQsJbVk1tbx1l1Ly4yg+XecD+Mq280uBGt9wa5BKSWf4Mhp6GmrkPixhMxmabYY7RbzlwVP32pbGCg==}
     dev: true
+
+  github.com/amar-gill/propelauth-cloudflare-worker/e09162547957ecff070c1e55bbf827d52d8c9a38:
+    resolution: {tarball: https://codeload.github.com/amar-gill/propelauth-cloudflare-worker/tar.gz/e09162547957ecff070c1e55bbf827d52d8c9a38}
+    name: '@propelauth/cloudflare-worker'
+    version: 2.1.3
+    dependencies:
+      jose: 4.14.6
+    dev: false
