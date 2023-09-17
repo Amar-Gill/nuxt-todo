@@ -1,5 +1,5 @@
 <template>
-  <div v-if="fetchingAuth || pending">Loading...</div>
+  <div v-if="fetchingAuth || !data">Loading...</div>
   <div v-else>
     <form
       method="post"
@@ -46,7 +46,7 @@ type FormPayload = Event & {
 
 type InputPayload = Event & { currentTarget: EventTarget & HTMLInputElement };
 
-const { pending } = await useFetch("/api/todos", {
+await useFetch("/api/todos", {
   key: "todos",
   headers: { Authorization: `Bearer ${auth.value?.accessToken}` },
 });
