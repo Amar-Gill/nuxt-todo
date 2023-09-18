@@ -97,6 +97,7 @@ async function deleteTodo(todo: Todo) {
   await useFetch(`/api/todos/${todo.id}`, {
     method: "delete",
     key: "deleteTodo",
+    headers: { Authorization: `Bearer ${auth.value?.accessToken}` },
     onRequest() {
       prevData = data.value;
 
@@ -122,6 +123,7 @@ async function handleDoneCheckboxChanged(e: InputPayload, todo: Todo) {
     method: "PATCH",
     key: "patchTodo",
     body: { done },
+    headers: { Authorization: `Bearer ${auth.value?.accessToken}` },
     onRequest() {
       updatedTodo.done = done;
     },
