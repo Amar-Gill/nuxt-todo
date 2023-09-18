@@ -47,10 +47,13 @@ type FormPayload = Event & {
 
 type InputPayload = Event & { currentTarget: EventTarget & HTMLInputElement };
 
-const { pending, error } = await useFetch("/api/todos", {
-  key: "todos",
-  headers: { Authorization: `Bearer ${auth.value?.accessToken}` },
-});
+const { pending, error } = await useFetch(
+  `/api/todos?user-id=${auth.value?.user.userId}`,
+  {
+    key: "todos",
+    headers: { Authorization: `Bearer ${auth.value?.accessToken}` },
+  }
+);
 
 const { data } = useNuxtData<{ todos: Todo[] }>("todos");
 
