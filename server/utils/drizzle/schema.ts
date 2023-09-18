@@ -11,6 +11,7 @@ export const todos = sqliteTable("todos", {
   updatedAt: integer("updated_at", { mode: "timestamp" })
     .notNull()
     .default(sql`(strftime('%s','now'))`),
+  userId: text("user_id").notNull(),
 });
 
 export type Todo = typeof todos.$inferSelect;
