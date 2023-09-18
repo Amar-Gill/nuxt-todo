@@ -37,7 +37,7 @@
 </template>
 
 <script setup lang="ts">
-import type { InsertTodo, Todo } from "@/server/utils/drizzle/schema";
+import type { InsertTodoSansAuth, Todo } from "@/server/utils/drizzle/schema";
 
 const { auth, fetchingAuth } = useAuth();
 
@@ -71,11 +71,12 @@ async function submitCreateTodo(payload: FormPayload) {
   await useFetch("/api/todos", {
     method: "post",
     body: { content: formData.get("content") },
+    headers: { Authorization: `Bearer ${auth.value?.accessToken}` },
     key: "addTodo",
     onRequest() {
       prevData = data.value;
 
-      const newTodo: InsertTodo = {
+      const newTodo: InsertTodoSansAuth = {
         content: formData.get("content")?.toString() ?? "",
       };
 

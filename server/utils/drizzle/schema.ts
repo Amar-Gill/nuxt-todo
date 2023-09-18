@@ -16,3 +16,4 @@ export const todos = sqliteTable("todos", {
 
 export type Todo = typeof todos.$inferSelect;
 export type InsertTodo = typeof todos.$inferInsert;
+export type InsertTodoSansAuth = Omit<InsertTodo, "userId">;
