@@ -1,9 +1,11 @@
 import { initAuth } from "@propelauth/cloudflare-worker";
 
-const { authUrl, authApiKey, authVerifierKey } = useRuntimeConfig();
+const {
+  auth: { url: authUrl, apiKey, verifierKey },
+} = useRuntimeConfig();
 
 export default initAuth({
   authUrl,
-  apiKey: authApiKey,
-  verifierKey: authVerifierKey,
+  apiKey,
+  verifierKey,
 });

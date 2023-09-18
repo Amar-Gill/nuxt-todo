@@ -8,9 +8,11 @@ export default defineNuxtConfig({
   runtimeConfig: {
     tursoDbUrl: "file:./server/sqlite.db",
     tursoDbToken: "",
-    authUrl: "",
-    authApiKey: "",
-    authVerifierKey: "",
+    auth: {
+      url: "",
+      apiKey: "",
+      verifierKey: "",
+    },
     public: {
       authUrl: "",
     },
