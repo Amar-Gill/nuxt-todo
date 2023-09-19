@@ -2,7 +2,7 @@
 
 <template>
   <div>
-    <Todos />
+    <TodosContainer />
   </div>
 </template>
 
