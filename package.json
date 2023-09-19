@@ -9,12 +9,14 @@
     "postinstall": "nuxt prepare",
     "db:push": "drizzle-kit push:sqlite",
     "db:studio": "drizzle-kit studio",
-    "db:generate": "drizzle-kit generate:sqlite"
+    "db:generate": "drizzle-kit generate:sqlite",
+    "lint": "eslint ."
   },
   "devDependencies": {
     "@nuxt/devtools": "latest",
     "@types/node": "^18.17.16",
     "drizzle-kit": "^0.19.13",
+    "eslint": "^8.49.0",
     "nuxt": "^3.7.3"
   },
   "dependencies": {
