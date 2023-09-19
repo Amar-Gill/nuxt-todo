@@ -3,9 +3,9 @@ export default defineNuxtRouteMiddleware(async (to) => {
 
   if (process.server) return;
 
-  const { fetchAuth } = useAuth();
+  const { auth, fetchAuth } = useAuth();
 
-  const isLoggedIn = await fetchAuth();
+  const isLoggedIn = !!auth.value || (await fetchAuth());
 
   if (!isLoggedIn) {
     if (to.path !== '/unauthorized') {
