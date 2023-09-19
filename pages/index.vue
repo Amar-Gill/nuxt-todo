@@ -1,5 +1,9 @@
 <script lang="ts" setup>
 const { fetchingAuth } = useAuth();
+
+definePageMeta({
+  middleware: 'auth',
+});
 </script>
 
 <template>
