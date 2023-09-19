@@ -78,19 +78,19 @@ onMounted(() => {
 async function submitCreateTodo(payload: FormPayload) {
   const formData = new FormData(payload.currentTarget);
 
+  const newTodo: InsertTodoSansAuth = {
+    content: formData.get('content')?.toString() ?? '',
+  };
+
   let prevData: { todos: Todo[] } | null;
 
   await useFetch('/api/todos', {
     method: 'post',
-    body: { content: formData.get('content') },
+    body: newTodo,
     headers: { Authorization: `Bearer ${auth.value?.accessToken}` },
     key: 'addTodo',
     onRequest() {
       prevData = data.value;
-
-      const newTodo: InsertTodoSansAuth = {
-        content: formData.get('content')?.toString() ?? '',
-      };
 
       data.value?.todos.push(newTodo as Todo);
     },
