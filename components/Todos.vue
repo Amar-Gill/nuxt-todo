@@ -1,13 +1,20 @@
 <template>
-  <div v-if="fetchingAuth || (pending && !data && !error)">Loading...</div>
-  <div v-else-if="error">{{ error }}</div>
+  <div v-if="fetchingAuth || (pending && !data && !error)">
+    Loading...
+  </div>
+  <div v-else-if="error">
+    {{ error }}
+  </div>
   <div v-else>
     <form
       method="post"
       @submit.prevent="((e:FormPayload) => submitCreateTodo(e))"
     >
       <label for="content">Content</label>
-      <input type="text" name="content" />
+      <input
+        type="text"
+        name="content"
+      >
       <button>Create</button>
     </form>
     <table>
@@ -15,7 +22,7 @@
         <th>Id</th>
         <th>Content</th>
         <th>Done</th>
-        <th></th>
+        <th />
       </tr>
       <tr v-for="todo in data?.todos">
         <td>{{ todo.id }}</td>
@@ -26,10 +33,12 @@
             :checked="todo.done"
             v-bind="todo.done"
             @change="((e: InputPayload) => handleDoneCheckboxChanged(e, todo))"
-          />
+          >
         </td>
         <td>
-          <button @click.prevent="deleteTodo(todo)">Delete</button>
+          <button @click.prevent="deleteTodo(todo)">
+            Delete
+          </button>
         </td>
       </tr>
     </table>
@@ -37,7 +46,7 @@
 </template>
 
 <script setup lang="ts">
-import type { InsertTodoSansAuth, Todo } from "@/server/utils/drizzle/schema";
+import type { InsertTodoSansAuth, Todo } from '@/server/utils/drizzle/schema';
 
 const { auth, fetchingAuth } = useAuth();
 
@@ -50,16 +59,16 @@ type InputPayload = Event & { currentTarget: EventTarget & HTMLInputElement };
 const { pending, error } = await useFetch(
   `/api/todos?user-id=${auth.value?.user.userId}`,
   {
-    key: "todos",
+    key: 'todos',
     headers: { Authorization: `Bearer ${auth.value?.accessToken}` },
   }
 );
 
-const { data } = useNuxtData<{ todos: Todo[] }>("todos");
+const { data } = useNuxtData<{ todos: Todo[] }>('todos');
 
 onMounted(() => {
   if (!data.value) {
-    refreshNuxtData("todos");
+    refreshNuxtData('todos');
   }
 });
 
@@ -68,16 +77,16 @@ async function submitCreateTodo(payload: FormPayload) {
 
   let prevData: { todos: Todo[] } | null;
 
-  await useFetch("/api/todos", {
-    method: "post",
-    body: { content: formData.get("content") },
+  await useFetch('/api/todos', {
+    method: 'post',
+    body: { content: formData.get('content') },
     headers: { Authorization: `Bearer ${auth.value?.accessToken}` },
-    key: "addTodo",
+    key: 'addTodo',
     onRequest() {
       prevData = data.value;
 
       const newTodo: InsertTodoSansAuth = {
-        content: formData.get("content")?.toString() ?? "",
+        content: formData.get('content')?.toString() ?? '',
       };
 
       data.value?.todos.push(newTodo as Todo);
@@ -86,7 +95,7 @@ async function submitCreateTodo(payload: FormPayload) {
       data.value = prevData;
     },
     async onResponse() {
-      await refreshNuxtData("todos");
+      await refreshNuxtData('todos');
     },
   });
 }
@@ -95,8 +104,8 @@ async function deleteTodo(todo: Todo) {
   let prevData: { todos: Todo[] } | null;
 
   await useFetch(`/api/todos/${todo.id}`, {
-    method: "delete",
-    key: "deleteTodo",
+    method: 'delete',
+    key: 'deleteTodo',
     headers: { Authorization: `Bearer ${auth.value?.accessToken}` },
     onRequest() {
       prevData = data.value;
@@ -109,7 +118,7 @@ async function deleteTodo(todo: Todo) {
       data.value = prevData;
     },
     async onResponse() {
-      await refreshNuxtData("todos");
+      await refreshNuxtData('todos');
     },
   });
 }
@@ -120,8 +129,8 @@ async function handleDoneCheckboxChanged(e: InputPayload, todo: Todo) {
   const updatedTodo = data.value?.todos.find(({ id }) => id === todo.id)!;
 
   await useFetch(`/api/todos/${todo.id}`, {
-    method: "PATCH",
-    key: "patchTodo",
+    method: 'PATCH',
+    key: 'patchTodo',
     body: { done },
     headers: { Authorization: `Bearer ${auth.value?.accessToken}` },
     onRequest() {
@@ -131,7 +140,7 @@ async function handleDoneCheckboxChanged(e: InputPayload, todo: Todo) {
       updatedTodo.done = !done;
     },
     async onResponse() {
-      await refreshNuxtData("todos");
+      await refreshNuxtData('todos');
     },
   });
 }

@@ -1,9 +1,9 @@
-import { eq } from "drizzle-orm";
+import { eq } from 'drizzle-orm';
 
 export default defineProtectedEventHandler(async (event) => {
   const query = getQuery(event);
 
-  const resourceOwnerId = query["user-id"]?.toString() ?? "";
+  const resourceOwnerId = query['user-id']?.toString() ?? '';
 
   return {
     todos: await db

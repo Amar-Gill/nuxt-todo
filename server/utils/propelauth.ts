@@ -1,4 +1,4 @@
-import { initAuth } from "@propelauth/cloudflare-worker";
+import { initAuth } from '@propelauth/cloudflare-worker';
 
 const {
   auth: { url: authUrl, apiKey, verifierKey },

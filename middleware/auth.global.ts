@@ -1,5 +1,5 @@
 export default defineNuxtRouteMiddleware(async (to, from) => {
-  if (to.path === "/login") return;
+  if (to.path === '/login') return;
 
   if (process.server) return;
 
@@ -8,8 +8,8 @@ export default defineNuxtRouteMiddleware(async (to, from) => {
   const isLoggedIn = await fetchAuth();
 
   if (!isLoggedIn) {
-    if (to.path !== "/unauthorized") {
-      return navigateTo("/unauthorized");
+    if (to.path !== '/unauthorized') {
+      return navigateTo('/unauthorized');
     }
   }
 });

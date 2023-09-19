@@ -1,7 +1,7 @@
-import { AuthenticationInfo } from "@propelauth/javascript";
+import { AuthenticationInfo } from '@propelauth/javascript';
 
 export const useAuthState = () =>
-  useState<AuthenticationInfo | null>("auth", () => null);
+  useState<AuthenticationInfo | null>('auth', () => null);
 
 export const useAuth = () => {
   const authClient = useAuthClient();

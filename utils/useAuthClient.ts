@@ -1,4 +1,4 @@
-import { IAuthClient, createClient } from "@propelauth/javascript";
+import { IAuthClient, createClient } from '@propelauth/javascript';
 
 let client: IAuthClient;
 
