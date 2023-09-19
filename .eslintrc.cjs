@@ -3,12 +3,17 @@ module.exports = {
   extends: ["@nuxt/eslint-config"],
   rules: {
     // Global
-    semi: ["error", "never"],
     quotes: ["error", "single"],
     "quote-props": ["error", "as-needed"],
-    // Vue
-    "vue/multi-word-component-names": 0,
-    "vue/max-attributes-per-line": "off",
-    "vue/no-v-html": 0,
+    "comma-dangle": [
+      "error",
+      {
+        arrays: "never",
+        objects: "always-multiline",
+        imports: "never",
+        exports: "never",
+        functions: "never",
+      },
+    ],
   },
 };
