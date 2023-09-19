@@ -1,6 +1,17 @@
-# Nuxt 3 Minimal Starter
+# Nuxt 3 Todo App
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+## Features
+
+- [x] CRUD endpoints
+- [x] Optimistic UI updates
+- [x] Zero setup SQLite DB for local development
+- [x] Edge SQLite for production using [Turso](https://turso.tech/)
+- [x] [Drizzle ORM](https://orm.drizzle.team/docs/overview) for DB queries and migrations
+- [x] Automatically run migrations before each production build
+- [x] User authentication using [PropelAuth](https://docs.propelauth.com/overview)
+- [x] SSO logins supported
+- [x] Protected backend API endpoints and pages
+- [x] Targeting edge runtimes deployment
 
 ## Setup
 
