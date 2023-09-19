@@ -24,7 +24,10 @@
         <th>Done</th>
         <th />
       </tr>
-      <tr v-for="todo in data?.todos">
+      <tr
+        v-for="todo in data?.todos"
+        :key="todo.id"
+      >
         <td>{{ todo.id }}</td>
         <td>{{ todo.content }}</td>
         <td>
