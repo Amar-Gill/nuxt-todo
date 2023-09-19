@@ -14,6 +14,7 @@
   },
   "devDependencies": {
     "@nuxt/devtools": "latest",
+    "@nuxt/eslint-config": "^0.2.0",
     "@types/node": "^18.17.16",
     "drizzle-kit": "^0.19.13",
     "eslint": "^8.49.0",
