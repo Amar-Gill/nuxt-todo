@@ -12,6 +12,7 @@
 - [x] SSO logins supported
 - [x] Protected backend API endpoints and pages
 - [x] Targeting edge runtimes deployment
+- [x] Linting and formatting through eslint only - no Prettier
 
 ## Setup
 
