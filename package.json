@@ -24,6 +24,9 @@
     "@libsql/client": "^0.3.4",
     "@propelauth/cloudflare-worker": "github:amar-gill/propelauth-cloudflare-worker#update-manifest",
     "@propelauth/javascript": "^2.0.6",
+    "@tiptap/pm": "^2.1.10",
+    "@tiptap/starter-kit": "^2.1.10",
+    "@tiptap/vue-3": "^2.1.10",
     "drizzle-orm": "^0.28.6"
   },
   "resolutions": {
