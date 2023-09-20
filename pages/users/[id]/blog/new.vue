@@ -5,7 +5,7 @@ definePageMeta({
 </script>
 
 <template>
-  <div>Page: /users/:userId/blog/new</div>
+  <div><TipTap /></div>
 </template>
 
 <style scoped></style>
