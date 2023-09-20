@@ -22,6 +22,16 @@
           Login
         </NuxtLink>
       </li>
+      <li v-if="auth">
+        <NuxtLink :to="`/users/${auth?.user.userId}/blog`">
+          Blog
+        </NuxtLink>
+      </li>
+      <li v-if="auth">
+        <NuxtLink :to="`/users/${auth?.user.userId}/blog/new`">
+          New blog post
+        </NuxtLink>
+      </li>
     </ul>
   </nav>
   <NuxtPage />
