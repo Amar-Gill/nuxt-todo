@@ -122,25 +122,16 @@
   <editor-content :editor="editor" />
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
 import StarterKit from '@tiptap/starter-kit';
 import { Editor, EditorContent } from '@tiptap/vue-3';
 
-export default {
-  components: {
-    EditorContent,
-  },
+const editor = ref<Editor | null>(null);
 
-  data() {
-    return {
-      editor: null,
-    };
-  },
-
-  mounted() {
-    this.editor = new Editor({
-      extensions: [StarterKit],
-      content: `
+onMounted(() => {
+  editor.value = new Editor({
+    extensions: [StarterKit],
+    content: `
         <h2>
           Hi there,
         </h2>
@@ -169,14 +160,11 @@ export default {
           <br />
           — Mom
         </blockquote>
-      `,
-    });
-  },
+    `,
+  });
+});
 
-  beforeUnmount() {
-    this.editor.destroy();
-  },
-};
+onBeforeUnmount(() => editor.value.destroy());
 </script>
 
 <style>
