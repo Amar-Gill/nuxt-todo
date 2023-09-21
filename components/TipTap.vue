@@ -1,5 +1,8 @@
 <template>
-  <div v-if="editor">
+  <div
+    v-if="editor"
+    class="tiptap-container"
+  >
     <button
       :disabled="!editor.can().chain().focus().toggleBold().run()"
       :class="{ 'is-active': editor.isActive('bold') }"
@@ -167,7 +170,22 @@ onMounted(() => {
 onBeforeUnmount(() => editor.value.destroy());
 </script>
 
-<style>
+<style scoped>
+/* Basic menu styles */
+.tiptap-container {
+  .is-active {
+    background-color: black;
+    color: white;
+  }
+
+  button {
+    outline: black;
+    color: black;
+    background: transparent;
+    border-radius: 0.25rem;
+  }
+}
+
 /* Basic editor styles */
 .tiptap {
   > * + * {
