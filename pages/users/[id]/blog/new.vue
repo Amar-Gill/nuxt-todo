@@ -1,9 +1,12 @@
 <script setup lang="ts">
 import TipTap from '~/components/TipTap.vue';
+import { InsertBlogPostSansAuth } from '~/server/utils/drizzle/schema';
 
 definePageMeta({
   middleware: 'auth',
 });
+
+const { auth } = useAuth();
 
 const tiptap = ref<InstanceType<typeof TipTap> | null>(null);
 
@@ -11,14 +14,25 @@ const saving = ref(false);
 
 const save = async () => {
   saving.value = true;
+
   const json = tiptap.value?.json;
-  console.log('editor json', json);
-  const res = await $fetch('/api/posts', {
+
+  const newBlogPost = {
+    title: 'New Blog Post',
+    content: json,
+  } satisfies InsertBlogPostSansAuth;
+
+  $fetch('/api/posts', {
     method: 'POST',
-    body: json,
-  });
-  console.log('res', res);
-  saving.value = false;
+    body: newBlogPost,
+    headers: { Authorization: `Bearer ${auth.value?.accessToken}` },
+  })
+    .catch((err) => {
+      console.error(err);
+    })
+    .finally(() => {
+      saving.value = false;
+    });
 };
 </script>
 

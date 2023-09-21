@@ -33,3 +33,4 @@ export const blogPosts = sqliteTable('blog_posts', {
 
 export type BlogPost = typeof blogPosts.$inferSelect;
 export type InsertBlogPost = typeof blogPosts.$inferInsert;
+export type InsertBlogPostSansAuth = Omit<InsertBlogPost, 'authorId'>;
