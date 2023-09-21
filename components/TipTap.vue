@@ -182,7 +182,7 @@ defineExpose({ json });
     color: white;
   }
 
-  button {
+  :is(button) {
     outline: black;
     color: black;
     background: transparent;
