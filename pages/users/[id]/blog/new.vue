@@ -7,16 +7,28 @@ definePageMeta({
 
 const tiptap = ref<InstanceType<typeof TipTap> | null>(null);
 
-const save = () => {
+const saving = ref(false);
+
+const save = async () => {
+  saving.value = true;
   const json = tiptap.value?.json;
   console.log('editor json', json);
+  const res = await $fetch('/api/posts', {
+    method: 'POST',
+    body: json,
+  });
+  console.log('res', res);
+  saving.value = false;
 };
 </script>
 
 <template>
   <div>
     <div>
-      <button @click="save">
+      <button
+        :disabled="saving"
+        @click="save"
+      >
         Save~~~
       </button>
     </div>
