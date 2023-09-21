@@ -15,7 +15,7 @@ const saving = ref(false);
 const save = async () => {
   saving.value = true;
 
-  const json = tiptap.value?.json;
+  const json = tiptap.value?.editor?.getJSON();
 
   const newBlogPost = {
     title: 'New Blog Post',

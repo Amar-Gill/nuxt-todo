@@ -169,9 +169,7 @@ onMounted(() => {
 
 onBeforeUnmount(() => editor.value.destroy());
 
-const json = computed(() => editor.value?.getJSON() ?? '');
-
-defineExpose({ json });
+defineExpose({ editor });
 </script>
 
 <style scoped>
