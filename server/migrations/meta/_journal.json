@@ -15,6 +15,13 @@
       "when": 1695000979992,
       "tag": "0001_volatile_post",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1695288600367,
+      "tag": "0002_curved_stick",
+      "breakpoints": true
     }
   ]
 }
