@@ -31,5 +31,5 @@ export const blogPosts = sqliteTable('blog_posts', {
     .default(sql`(strftime('%s','now'))`),
 });
 
-export type Post = typeof blogPosts.$inferSelect;
-export type InsertPost = typeof blogPosts.$inferInsert;
+export type BlogPost = typeof blogPosts.$inferSelect;
+export type InsertBlogPost = typeof blogPosts.$inferInsert;
