@@ -1,18 +1,39 @@
-# Nuxt 3 Todo App
+# Nuxt 3 Blog Editing and Publishing App
 
 ## Features
 
-- [x] CRUD endpoints
-- [x] Optimistic UI updates
+### Deployment
+
+- [x] Targeting edge runtimes deployment
+
+### Development
+
+- [x] Linting and formatting through eslint only - no Prettier
+
+### DB
+
 - [x] Zero setup SQLite DB for local development
 - [x] Edge SQLite for production using [Turso](https://turso.tech/)
 - [x] [Drizzle ORM](https://orm.drizzle.team/docs/overview) for DB queries and migrations
 - [x] Automatically run migrations before each production build
+
+### User Management
+
 - [x] User authentication using [PropelAuth](https://docs.propelauth.com/overview)
 - [x] SSO logins supported
 - [x] Protected backend API endpoints and pages
-- [x] Targeting edge runtimes deployment
-- [x] Linting and formatting through eslint only - no Prettier
+- [ ] private / public profiles
+
+### Todo
+
+- [x] CRUD endpoints
+- [x] Optimistic UI updates
+
+### Blog Editor
+
+- [ ] WYSIWIG Editor
+- [ ] CRUD endpoints
+- [ ] draft / publish system
 
 ## Setup
 
