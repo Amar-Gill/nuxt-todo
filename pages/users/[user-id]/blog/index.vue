@@ -3,10 +3,12 @@ definePageMeta({
   middleware: 'auth',
 });
 
+const { params } = useRoute();
+
 const { auth, fetchingAuth } = useAuth();
 
 const { data, pending, error } = await useFetch(
-  `/api/posts?author-id=${auth.value?.user.userId}`,
+  `/api/posts?author-id=${params.userid.toString()}`,
   { headers: { Authorization: `Bearer ${auth.value?.accessToken}` } }
 );
 </script>
