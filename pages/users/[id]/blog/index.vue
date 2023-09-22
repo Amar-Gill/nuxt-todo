@@ -20,6 +20,14 @@ const { data, pending, error } = await useFetch(
   </div>
   <div v-else>
     Num posts: {{ data?.posts.length }}
+    <ul>
+      <li
+        v-for="post in data.posts"
+        :key="post.id"
+      >
+        {{ post.title }}
+      </li>
+    </ul>
   </div>
 </template>
 
