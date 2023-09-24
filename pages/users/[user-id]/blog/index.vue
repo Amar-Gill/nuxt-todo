@@ -27,7 +27,9 @@ const { data, pending, error } = await useFetch(
         v-for="post in data.posts"
         :key="post.id"
       >
-        {{ post.title }}
+        <NuxtLink :to="`/users/${auth.user.userId}/blog/${post.id}`">
+          {{ post.title }}
+        </NuxtLink>
       </li>
     </ul>
   </div>
