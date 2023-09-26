@@ -30,6 +30,10 @@ const { data, pending, error } = await useFetch(
         <NuxtLink :to="`/users/${auth.user.userId}/blog/${post.id}`">
           {{ post.title }}
         </NuxtLink>
+        |
+        <NuxtLink :to="`/users/${auth.user.userId}/blog/${post.id}/edit`">
+          Edit ✎
+        </NuxtLink>
       </li>
     </ul>
   </div>
