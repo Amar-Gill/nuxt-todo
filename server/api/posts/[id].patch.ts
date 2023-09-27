@@ -1,6 +1,6 @@
 import { eq } from 'drizzle-orm';
 
-export default defineEventHandler(async (event) => {
+export default defineProtectedEventHandler(async (event) => {
   const idString = getRouterParam(event, 'id');
 
   const id = parseInt(idString!);
