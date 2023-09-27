@@ -22,7 +22,7 @@
   },
   "dependencies": {
     "@libsql/client": "^0.3.4",
-    "@propelauth/cloudflare-worker": "github:amar-gill/propelauth-cloudflare-worker#update-manifest",
+    "@propelauth/cloudflare-worker": "^2.1.3",
     "@propelauth/javascript": "^2.0.6",
     "@tiptap/extension-blockquote": "^2.1.11",
     "@tiptap/extension-bold": "^2.1.11",
