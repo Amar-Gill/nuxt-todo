@@ -1,16 +1,6 @@
 <script setup lang="ts">
-import Document from '@tiptap/extension-document';
-import Paragraph from '@tiptap/extension-paragraph';
-import Text from '@tiptap/extension-text';
-import Heading from '@tiptap/extension-heading';
-import Blockquote from '@tiptap/extension-blockquote';
-import BulletList from '@tiptap/extension-bullet-list';
-import CodeBlock from '@tiptap/extension-code-block';
-import ListItem from '@tiptap/extension-list-item';
-import Italic from '@tiptap/extension-italic';
-import Bold from '@tiptap/extension-bold';
-import HardBreak from '@tiptap/extension-hard-break';
 import { generateHTML } from '@tiptap/html';
+import StarterKit from '@tiptap/starter-kit';
 
 definePageMeta({
   middleware: 'auth',
@@ -27,19 +17,7 @@ const { data, pending, error } = await useFetch(
   }
 );
 
-const tiptapExtensions = [
-  Document,
-  Paragraph,
-  Text,
-  Heading,
-  Blockquote,
-  BulletList,
-  CodeBlock,
-  ListItem,
-  Italic,
-  Bold,
-  HardBreak,
-];
+const tiptapExtensions = [StarterKit];
 
 const htmlString = computed(() =>
   generateHTML(data.value.post.content, tiptapExtensions)
