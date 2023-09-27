@@ -18,39 +18,6 @@ dependencies:
   '@propelauth/javascript':
     specifier: ^2.0.6
     version: 2.0.6
-  '@tiptap/extension-blockquote':
-    specifier: ^2.1.11
-    version: 2.1.11(@tiptap/core@2.1.10)
-  '@tiptap/extension-bold':
-    specifier: ^2.1.11
-    version: 2.1.11(@tiptap/core@2.1.10)
-  '@tiptap/extension-bullet-list':
-    specifier: ^2.1.11
-    version: 2.1.11(@tiptap/core@2.1.10)
-  '@tiptap/extension-code-block':
-    specifier: ^2.1.11
-    version: 2.1.11(@tiptap/core@2.1.10)(@tiptap/pm@2.1.10)
-  '@tiptap/extension-document':
-    specifier: ^2.1.11
-    version: 2.1.11(@tiptap/core@2.1.10)
-  '@tiptap/extension-hard-break':
-    specifier: ^2.1.11
-    version: 2.1.11(@tiptap/core@2.1.10)
-  '@tiptap/extension-heading':
-    specifier: ^2.1.11
-    version: 2.1.11(@tiptap/core@2.1.10)
-  '@tiptap/extension-italic':
-    specifier: ^2.1.11
-    version: 2.1.11(@tiptap/core@2.1.10)
-  '@tiptap/extension-list-item':
-    specifier: ^2.1.11
-    version: 2.1.11(@tiptap/core@2.1.10)
-  '@tiptap/extension-paragraph':
-    specifier: ^2.1.11
-    version: 2.1.11(@tiptap/core@2.1.10)
-  '@tiptap/extension-text':
-    specifier: ^2.1.11
-    version: 2.1.11(@tiptap/core@2.1.10)
   '@tiptap/html':
     specifier: ^2.1.11
     version: 2.1.11(@tiptap/core@2.1.10)(@tiptap/pm@2.1.10)
@@ -1241,7 +1208,7 @@ packages:
       semver: 7.5.4
       simple-git: 3.19.1
       sirv: 2.0.3
-      unimport: 3.3.0
+      unimport: 3.4.0(rollup@3.29.3)
       vite: 4.4.9(@types/node@18.17.16)
       vite-plugin-inspect: 0.7.38(@nuxt/kit@3.7.3)(vite@4.4.9)
       vite-plugin-vue-inspector: 3.7.1(vite@4.4.9)
