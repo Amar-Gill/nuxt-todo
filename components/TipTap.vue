@@ -129,12 +129,12 @@
 import StarterKit from '@tiptap/starter-kit';
 import { Editor, EditorContent } from '@tiptap/vue-3';
 
-const editor = ref<Editor | null>(null);
+interface Props {
+  content?: string;
+}
 
-onMounted(() => {
-  editor.value = new Editor({
-    extensions: [StarterKit],
-    content: `
+const props = withDefaults(defineProps<Props>(), {
+  content: `
         <h2>
           Hi there,
         </h2>
@@ -164,6 +164,14 @@ onMounted(() => {
           — Mom
         </blockquote>
     `,
+});
+
+const editor = ref<Editor | null>(null);
+
+onMounted(() => {
+  editor.value = new Editor({
+    extensions: [StarterKit],
+    content: props.content,
   });
 });
 
