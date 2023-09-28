@@ -9,7 +9,10 @@ const { auth, fetchingAuth } = useAuth();
 
 const { data, pending, error } = await useFetch(
   `/api/posts?author-id=${params.userid.toString()}`,
-  { headers: { Authorization: `Bearer ${auth.value?.accessToken}` } }
+  {
+    headers: { Authorization: `Bearer ${auth.value?.accessToken}` },
+    server: false,
+  }
 );
 </script>
 
