@@ -40,7 +40,13 @@ const save = async () => {
 </script>
 
 <template>
-  <div>
+  <div v-if="fetchingAuth || (pending && !data && !error)">
+    Loading... 🚰
+  </div>
+  <div v-else-if="error">
+    {{ error }}
+  </div>
+  <div v-else>
     <button
       :disabled="saving"
       @click="save"
@@ -49,7 +55,7 @@ const save = async () => {
     </button>
     <TipTap
       ref="tiptap"
-      :content="data.post.content"
+      :content="data?.post.content"
     />
   </div>
 </template>
