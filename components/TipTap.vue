@@ -127,7 +127,7 @@
 
 <script setup lang="ts">
 import StarterKit from '@tiptap/starter-kit';
-import { Editor, EditorContent } from '@tiptap/vue-3';
+import { Editor, EditorContent, JSONContent } from '@tiptap/vue-3';
 
 interface Props {
   content?: string;
@@ -166,12 +166,24 @@ const props = withDefaults(defineProps<Props>(), {
     `,
 });
 
+const emit = defineEmits<{
+  (event: 'update', content?: JSONContent): void;
+}>();
+
 const editor = ref<Editor | null>(null);
+
+const emitUpdateDebounced = debounce(
+  () => emit('update', editor.value?.getJSON()),
+  2000
+);
 
 onMounted(() => {
   editor.value = new Editor({
     extensions: [StarterKit],
     content: props.content,
+    onUpdate() {
+      emitUpdateDebounced();
+    },
   });
 });
 
