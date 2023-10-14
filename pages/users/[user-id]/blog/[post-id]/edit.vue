@@ -15,6 +15,8 @@ const tiptap = ref<InstanceType<typeof TipTap> | null>(null);
 
 const saving = ref(false);
 
+const autosave = ref(true);
+
 const save = async () => {
   saving.value = true;
 
@@ -53,9 +55,15 @@ const save = async () => {
     >
       Omg le Save!
     </button>
+    autosave:
+    <input
+      v-model="autosave"
+      type="checkbox"
+    >
     <TipTap
       ref="tiptap"
       :content="data?.post.content"
+      @update="autosave && save()"
     />
   </div>
 </template>
