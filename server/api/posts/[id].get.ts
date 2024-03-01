@@ -1,4 +1,5 @@
 import { eq } from 'drizzle-orm';
+import { useDb } from '~/server/utils/drizzle/db';
 
 export default defineEventHandler(async (event) => {
   const idString = getRouterParam(event, 'id');
@@ -9,7 +10,7 @@ export default defineEventHandler(async (event) => {
     return createError({ statusCode: 400, message: 'Invalid id' });
   }
 
-  const blogPost = await db
+  const blogPost = await useDb()
     .select()
     .from(blogPosts)
     .where(eq(blogPosts.id, id))

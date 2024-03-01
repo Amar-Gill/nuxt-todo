@@ -1,4 +1,5 @@
 import { eq } from 'drizzle-orm';
+import { useDb } from '~/server/utils/drizzle/db';
 
 export default defineProtectedEventHandler(async (event) => {
   const idString = getRouterParam(event, 'id');
@@ -11,7 +12,7 @@ export default defineProtectedEventHandler(async (event) => {
 
   const body = await readBody<BlogPost>(event);
 
-  return db
+  return useDb()
     .update(blogPosts)
     .set({
       title: body.title,

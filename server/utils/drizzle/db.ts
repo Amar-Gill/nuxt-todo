@@ -1,11 +1,15 @@
 import { drizzle } from 'drizzle-orm/libsql';
 import { createClient } from '@libsql/client';
 
-const runtimeConfig = useRuntimeConfig(useEvent());
+export const useDb = () => {
+  const runtimeConfig = useRuntimeConfig(useEvent());
 
-const client = createClient({
-  url: runtimeConfig.tursoDbUrl,
-  authToken: runtimeConfig.tursoDbToken,
-});
+  const client = createClient({
+    url: runtimeConfig.tursoDbUrl,
+    authToken: runtimeConfig.tursoDbToken,
+  });
 
-export const db = drizzle(client);
+  const db = drizzle(client);
+
+  return db;
+};

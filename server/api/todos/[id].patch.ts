@@ -1,4 +1,5 @@
 import { eq } from 'drizzle-orm';
+import { useDb } from '~/server/utils/drizzle/db';
 
 export default defineProtectedEventHandler(async (event) => {
   const body = await readBody<Todo>(event);
@@ -9,7 +10,7 @@ export default defineProtectedEventHandler(async (event) => {
     return;
   }
 
-  return db
+  return useDb()
     .update(todos)
     .set({ done: body.done, updatedAt: new Date() })
     .where(eq(todos.id, parseInt(id)))
