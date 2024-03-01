@@ -17,9 +17,6 @@ export default defineNuxtConfig({
       authUrl: '',
     },
   },
-  experimental: {
-    asyncContext: true,
-  },
   hooks: {
     async 'build:before'() {
       if (process.env.NODE_ENV === 'development') {
