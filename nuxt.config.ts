@@ -6,7 +6,7 @@ import { createClient } from '@libsql/client';
 export default defineNuxtConfig({
   devtools: { enabled: true },
   runtimeConfig: {
-    tursoDbUrl: 'file:./server/sqlite.db',
+    tursoDbUrl: '',
     tursoDbToken: '',
     auth: {
       url: '',
