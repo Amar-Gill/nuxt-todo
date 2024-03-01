@@ -18,7 +18,7 @@
     "@types/node": "^18.17.16",
     "drizzle-kit": "^0.19.13",
     "eslint": "^8.49.0",
-    "nuxt": "^3.7.3"
+    "nuxt": "^3.10.3"
   },
   "dependencies": {
     "@libsql/client": "^0.3.4",
