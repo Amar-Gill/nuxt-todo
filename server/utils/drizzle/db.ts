@@ -1,7 +1,7 @@
 import { drizzle } from 'drizzle-orm/libsql';
 import { createClient } from '@libsql/client';
 
-const runtimeConfig = useRuntimeConfig();
+const runtimeConfig = useRuntimeConfig(useEvent());
 
 const client = createClient({
   url: runtimeConfig.tursoDbUrl,
